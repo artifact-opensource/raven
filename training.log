@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/adam/worxpace/gladius/raven/src/engine/main_train.py", line 3, in <module>
+    from src.model.raven import Raven
+ModuleNotFoundError: No module named 'src'
