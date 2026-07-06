@@ -1,29 +1,919 @@
 {
     "model_id": "raven-v1",
-    "version": "1.0.0",
-    "architecture": "Lean-V7",
-    "precision": "float32",
-    "alignment": "64-bit",
-    "total_binary_size": 1105920000,
+    "total_binary_size": 1369542656,
     "layers": [
         {
             "layer_index": 0,
             "tensors": {
-                "qkv": {"offset": 0, "shape": [1024, 3072], "size": 12582912},
-                "mlp_up": {"offset": 12582912, "shape": [1024, 4096], "size": 16777216},
-                "mlp_down": {"offset": 29359936, "shape": [4096, 1024], "size": 16777216},
-                "pup_gate": {"offset": 46137152, "shape": [1024, 1], "size": 4096}
+                "qkv": {
+                    "offset": 0,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 12582912,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 29360128,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 46137344,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 1,
+            "tensors": {
+                "qkv": {
+                    "offset": 46141440,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 58724352,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 75501568,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 92278784,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 2,
+            "tensors": {
+                "qkv": {
+                    "offset": 92282880,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 104865792,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 121643008,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 138420224,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 3,
+            "tensors": {
+                "qkv": {
+                    "offset": 138424320,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 151007232,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 167784448,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 184561664,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 4,
+            "tensors": {
+                "qkv": {
+                    "offset": 184565760,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 197148672,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 213925888,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 230703104,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 5,
+            "tensors": {
+                "qkv": {
+                    "offset": 230707200,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 243290112,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 260067328,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 276844544,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 6,
+            "tensors": {
+                "qkv": {
+                    "offset": 276848640,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 289431552,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 306208768,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 322985984,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 7,
+            "tensors": {
+                "qkv": {
+                    "offset": 322990080,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 335572992,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 352350208,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 369127424,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 8,
+            "tensors": {
+                "qkv": {
+                    "offset": 369131520,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 381714432,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 398491648,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 415268864,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 9,
+            "tensors": {
+                "qkv": {
+                    "offset": 415272960,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 427855872,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 444633088,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 461410304,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 10,
+            "tensors": {
+                "qkv": {
+                    "offset": 461414400,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 473997312,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 490774528,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 507551744,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 11,
+            "tensors": {
+                "qkv": {
+                    "offset": 507555840,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 520138752,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 536915968,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 553693184,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 12,
+            "tensors": {
+                "qkv": {
+                    "offset": 553697280,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 566280192,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 583057408,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 599834624,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 13,
+            "tensors": {
+                "qkv": {
+                    "offset": 599838720,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 612421632,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 629198848,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 645976064,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 14,
+            "tensors": {
+                "qkv": {
+                    "offset": 645980160,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 658563072,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 675340288,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 692117504,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 15,
+            "tensors": {
+                "qkv": {
+                    "offset": 692121600,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 704704512,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 721481728,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 738258944,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 16,
+            "tensors": {
+                "qkv": {
+                    "offset": 738263040,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 750845952,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 767623168,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 784400384,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 17,
+            "tensors": {
+                "qkv": {
+                    "offset": 784404480,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 796987392,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 813764608,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 830541824,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 18,
+            "tensors": {
+                "qkv": {
+                    "offset": 830545920,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 843128832,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 859906048,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 876683264,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 19,
+            "tensors": {
+                "qkv": {
+                    "offset": 876687360,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 889270272,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 906047488,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 922824704,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 20,
+            "tensors": {
+                "qkv": {
+                    "offset": 922828800,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 935411712,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 952188928,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 968966144,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 21,
+            "tensors": {
+                "qkv": {
+                    "offset": 968970240,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 981553152,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 998330368,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 1015107584,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 22,
+            "tensors": {
+                "qkv": {
+                    "offset": 1015111680,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 1027694592,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 1044471808,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 1061249024,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
+            }
+        },
+        {
+            "layer_index": 23,
+            "tensors": {
+                "qkv": {
+                    "offset": 1061253120,
+                    "shape": [
+                        3072,
+                        1024
+                    ],
+                    "size": 12582912
+                },
+                "mlp_up": {
+                    "offset": 1073836032,
+                    "shape": [
+                        4096,
+                        1024
+                    ],
+                    "size": 16777216
+                },
+                "mlp_down": {
+                    "offset": 1090613248,
+                    "shape": [
+                        1024,
+                        4096
+                    ],
+                    "size": 16777216
+                },
+                "pup_gate": {
+                    "offset": 1107390464,
+                    "shape": [
+                        1,
+                        1024
+                    ],
+                    "size": 4096
+                }
             }
         }
     ],
     "global_params": {
-        "token_emb": {"offset": 1105920000, "shape": [32000, 1024], "size": 131072000},
-        "ln_f": {"offset": 1236992000, "shape": [1024], "size": 4096},
-        "head": {"offset": 1236996096, "shape": [1024, 32000], "size": 131072000}
-    },
-    "blockchain_meta": {
-        "wasm_page_size": 65536,
-        "memory_limit": "2GB",
-        "access_mode": "zero-copy"
+        "token_emb": {
+            "offset": 1107394560,
+            "shape": [
+                32000,
+                1024
+            ],
+            "size": 131072000
+        },
+        "ln_f": {
+            "offset": 1238466560,
+            "shape": [
+                1024
+            ],
+            "size": 4096
+        },
+        "head": {
+            "offset": 1238470656,
+            "shape": [
+                32000,
+                1024
+            ],
+            "size": 131072000
+        }
     }
 }

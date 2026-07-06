@@ -1,23 +1,13 @@
-# Weights and Binaries
 *.bin
 *.gguf
 *.pt
 *.pth
 weights/
-*.weights
-
-# Configs and Data
 *.json
 *.env
-*.log
-
-# Python/Env
 __pycache__/
-*.pyc
 venv/
-.env
-.vscode/
-.idea/
-
-# OS
-.DS_Store
+*.gguf
+*.bin
+venv/
+__pycache__/
