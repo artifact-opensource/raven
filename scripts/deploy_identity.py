@@ -18,7 +18,8 @@ w3 = Web3(Web3.HTTPProvider(base_rpc))
 print(f"Connecting to Base L2... {w3.is_connected()}")
 print(f"Deploying Identity for: {address}")
 
-# Simulate the OnchainKit transaction
+# In a real deployment, we'd sign a transaction with the private key.
+# Here, we simulate the on-chain anchor and RSBT minting.
 tx_hash = "0x" + "b" * 64 
 print(f"Transaction Sent: {tx_hash}")
 print(f"Identity anchored. RSBT Minted to {address}")
