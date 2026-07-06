@@ -1,16 +1,29 @@
 {
     "model_id": "raven-v1",
-    "total_size": 4000000,
+    "version": "1.0.0",
+    "architecture": "Lean-V7",
+    "precision": "float32",
+    "alignment": "64-bit",
+    "total_binary_size": 1105920000,
     "layers": [
         {
-            "name": "layer_0_qkv",
-            "offset": 0,
-            "size": 12582912
-        },
-        {
-            "name": "layer_0_mlp",
-            "offset": 12582912,
-            "size": 16777216
+            "layer_index": 0,
+            "tensors": {
+                "qkv": {"offset": 0, "shape": [1024, 3072], "size": 12582912},
+                "mlp_up": {"offset": 12582912, "shape": [1024, 4096], "size": 16777216},
+                "mlp_down": {"offset": 29359936, "shape": [4096, 1024], "size": 16777216},
+                "pup_gate": {"offset": 46137152, "shape": [1024, 1], "size": 4096}
+            }
         }
-    ]
+    ],
+    "global_params": {
+        "token_emb": {"offset": 1105920000, "shape": [32000, 1024], "size": 131072000},
+        "ln_f": {"offset": 1236992000, "shape": [1024], "size": 4096},
+        "head": {"offset": 1236996096, "shape": [1024, 32000], "size": 131072000}
+    },
+    "blockchain_meta": {
+        "wasm_page_size": 65536,
+        "memory_limit": "2GB",
+        "access_mode": "zero-copy"
+    }
 }
