@@ -20,7 +20,7 @@ Raven is bound to a Base L2 Soulbound Token (SBT), linking her binary hash to a 
 
 | Component | Value | Status |
 | :--- | :--- | :--- |
-| **Model Version** | Raven-v1.1 (Sovereign Auditor) | ✅ Active |
+| **Model Version** | Raven-v1.1 (Sovereign Auditor (Cryptographically Signed)) | ✅ Active |
 | **Sovereign Wallet** | `0x21E914dFBB137F7fEC896F11bC8BAd6BCCDB147B` | ✅ Linked |
 | **Runtime** | Artifact Engine (AE-CPU) | ✅ Optimized |
 | **IPFS Anchor** | `` | ⏳ Anchoring |

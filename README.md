@@ -38,3 +38,7 @@ To run Raven in a sovereign environment:
 ---
 **License:** Apache 2.0
 **Sovereign Status:** Verified
+-e 
+## 🔐 Security Hardening
+- Signed Decisions: All outputs are RSA-signed to prevent relayer spoofing.
+- E2EE Ready: Architecture supports encrypted payloads to prevent prompt injection.
