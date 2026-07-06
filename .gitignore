@@ -1,1 +1,8 @@
+.env
 weights/*.bin
+weights/*.pt
+weights/*.gguf
+__pycache__/
+*.pyc
+venv/
+.DS_Store
