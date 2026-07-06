@@ -1,0 +1,252 @@
+[
+    {
+        "q": "Blockchain Question 0: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6606090068817139,
+        "tokens_per_sec": 48.44015093141138
+    },
+    {
+        "q": "Blockchain Question 1: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.47376537322998047,
+        "tokens_per_sec": 67.5439823341969
+    },
+    {
+        "q": "Blockchain Question 2: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5634760856628418,
+        "tokens_per_sec": 56.79034268571839
+    },
+    {
+        "q": "Blockchain Question 3: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5139095783233643,
+        "tokens_per_sec": 62.26776333766799
+    },
+    {
+        "q": "Blockchain Question 4: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.897899866104126,
+        "tokens_per_sec": 35.63871786599541
+    },
+    {
+        "q": "Blockchain Question 5: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 1.0598037242889404,
+        "tokens_per_sec": 30.194270190425993
+    },
+    {
+        "q": "Blockchain Question 6: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5832710266113281,
+        "tokens_per_sec": 54.86300285805848
+    },
+    {
+        "q": "Blockchain Question 7: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.9012291431427002,
+        "tokens_per_sec": 35.50706304105074
+    },
+    {
+        "q": "Blockchain Question 8: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.772540807723999,
+        "tokens_per_sec": 41.42176009352304
+    },
+    {
+        "q": "Blockchain Question 9: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.735309362411499,
+        "tokens_per_sec": 43.51909772378491
+    },
+    {
+        "q": "Blockchain Question 10: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.40912508964538574,
+        "tokens_per_sec": 78.21568710864543
+    },
+    {
+        "q": "Blockchain Question 11: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6033761501312256,
+        "tokens_per_sec": 53.034910301045976
+    },
+    {
+        "q": "Blockchain Question 12: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5689089298248291,
+        "tokens_per_sec": 56.24801848312175
+    },
+    {
+        "q": "Blockchain Question 13: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.4963240623474121,
+        "tokens_per_sec": 64.47400484403867
+    },
+    {
+        "q": "Blockchain Question 14: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.45876073837280273,
+        "tokens_per_sec": 69.75313561814839
+    },
+    {
+        "q": "Blockchain Question 15: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.652127742767334,
+        "tokens_per_sec": 49.070140558974735
+    },
+    {
+        "q": "Blockchain Question 16: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5333075523376465,
+        "tokens_per_sec": 60.00290050222321
+    },
+    {
+        "q": "Blockchain Question 17: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6993756294250488,
+        "tokens_per_sec": 45.75509733775961
+    },
+    {
+        "q": "Blockchain Question 18: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.4195585250854492,
+        "tokens_per_sec": 76.27064661237127
+    },
+    {
+        "q": "Blockchain Question 19: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5060129165649414,
+        "tokens_per_sec": 63.23949241697497
+    },
+    {
+        "q": "Blockchain Question 20: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5236132144927979,
+        "tokens_per_sec": 61.113812857066755
+    },
+    {
+        "q": "Blockchain Question 21: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.478989839553833,
+        "tokens_per_sec": 66.80726261293391
+    },
+    {
+        "q": "Blockchain Question 22: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5911312103271484,
+        "tokens_per_sec": 54.13349767522901
+    },
+    {
+        "q": "Blockchain Question 23: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6233518123626709,
+        "tokens_per_sec": 51.335376532734216
+    },
+    {
+        "q": "Blockchain Question 24: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.608177661895752,
+        "tokens_per_sec": 52.616204120770774
+    },
+    {
+        "q": "Blockchain Question 25: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.4760410785675049,
+        "tokens_per_sec": 67.22108960910239
+    },
+    {
+        "q": "Blockchain Question 26: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6325790882110596,
+        "tokens_per_sec": 50.586559999155746
+    },
+    {
+        "q": "Blockchain Question 27: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.7908926010131836,
+        "tokens_per_sec": 40.46061369015966
+    },
+    {
+        "q": "Blockchain Question 28: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.836942195892334,
+        "tokens_per_sec": 38.23442067690485
+    },
+    {
+        "q": "Blockchain Question 29: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.7023224830627441,
+        "tokens_per_sec": 45.56311491047793
+    },
+    {
+        "q": "Blockchain Question 30: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.7634322643280029,
+        "tokens_per_sec": 41.91596490641826
+    },
+    {
+        "q": "Blockchain Question 31: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5184962749481201,
+        "tokens_per_sec": 61.716933266689075
+    },
+    {
+        "q": "Blockchain Question 32: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.45654988288879395,
+        "tokens_per_sec": 70.09091711407696
+    },
+    {
+        "q": "Blockchain Question 33: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.520493745803833,
+        "tokens_per_sec": 61.480085511076176
+    },
+    {
+        "q": "Blockchain Question 34: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6903696060180664,
+        "tokens_per_sec": 46.35198264965707
+    },
+    {
+        "q": "Blockchain Question 35: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5927085876464844,
+        "tokens_per_sec": 53.989432019308126
+    },
+    {
+        "q": "Blockchain Question 36: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.8027956485748291,
+        "tokens_per_sec": 39.86070434837099
+    },
+    {
+        "q": "Blockchain Question 37: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6101186275482178,
+        "tokens_per_sec": 52.448816599147406
+    },
+    {
+        "q": "Blockchain Question 38: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5875349044799805,
+        "tokens_per_sec": 54.46484924725074
+    },
+    {
+        "q": "Blockchain Question 39: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.4375491142272949,
+        "tokens_per_sec": 73.1346469676016
+    },
+    {
+        "q": "Blockchain Question 40: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.6449580192565918,
+        "tokens_per_sec": 49.6156324048574
+    },
+    {
+        "q": "Blockchain Question 41: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.705967903137207,
+        "tokens_per_sec": 45.327839775430554
+    },
+    {
+        "q": "Blockchain Question 42: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.4449193477630615,
+        "tokens_per_sec": 71.92314778147468
+    },
+    {
+        "q": "Blockchain Question 43: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 1.7983167171478271,
+        "tokens_per_sec": 17.79441835515646
+    },
+    {
+        "q": "Blockchain Question 44: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5554702281951904,
+        "tokens_per_sec": 57.60884809969564
+    },
+    {
+        "q": "Blockchain Question 45: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.7207014560699463,
+        "tokens_per_sec": 44.401186830534584
+    },
+    {
+        "q": "Blockchain Question 46: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5378007888793945,
+        "tokens_per_sec": 59.50158620383916
+    },
+    {
+        "q": "Blockchain Question 47: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5775656700134277,
+        "tokens_per_sec": 55.40495507507577
+    },
+    {
+        "q": "Blockchain Question 48: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.5607907772064209,
+        "tokens_per_sec": 57.06227937522081
+    },
+    {
+        "q": "Blockchain Question 49: Explain the impact of MEV on transaction ordering in a PoS system.",
+        "latency": 0.4969925880432129,
+        "tokens_per_sec": 64.38727814028816
+    }
+]

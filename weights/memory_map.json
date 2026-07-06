@@ -1,0 +1,16 @@
+{
+    "model_id": "raven-v1",
+    "total_size": 4000000,
+    "layers": [
+        {
+            "name": "layer_0_qkv",
+            "offset": 0,
+            "size": 12582912
+        },
+        {
+            "name": "layer_0_mlp",
+            "offset": 12582912,
+            "size": 16777216
+        }
+    ]
+}
