@@ -1,10 +1,23 @@
-.env
-weights/*.bin
-weights/*.pt
-weights/*.gguf
+# Weights and Binaries
+*.bin
+*.gguf
+*.pt
+*.pth
+weights/
+*.weights
+
+# Configs and Data
+*.json
+*.env
+*.log
+
+# Python/Env
 __pycache__/
 *.pyc
 venv/
+.env
+.vscode/
+.idea/
+
+# OS
 .DS_Store
-weights/memory_map.json
-src/engine/export_wasm_weights.py
