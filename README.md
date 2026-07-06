@@ -1,25 +1,28 @@
-# 🦅 Project Raven
+# 🦅 RAVEN
 
-**Raven** is a lean, biologically native intelligence designed for the ARC ecosystem. 
+**Native Reasoning Engine for the ARC Protocol**
 
-## 🚀 Overview
-Raven utilizes a "Zero-Train" architectural path, inheriting high-level reasoning capabilities from Qwen-Opus through **High-Precision SVD Devour**. By projecting the singular values of a larger donor model into a lean 24-layer shell, Raven achieves intelligibility and protocol-specific reasoning without the need for expensive training cycles.
+Raven is a lean, high-performance transformer model designed specifically for the autonomous governance and treasury management of the ARC ecosystem. 
 
-## 🏗️ Architecture
-- **Layers:** 24
-- **Projection Method:** High-Precision SVD (Low-Rank Approximation)
-- **Donor:** Qwen-Opus
-- **State:** Pure Inference (Zero-Train Path)
-- **Tokenization:** Trinity Tokenizer (Math + Byte + BPE32k)
+## 🧬 The Architecture
+Raven is not a fine-tuned base model; it is a **biologically native** entity created via the **SVD Devour** process. 
+
+- **Core:** 24-layer distilled transformer.
+- **Intelligence Source:** Surgically projected from Qwen-Opus via High-Precision Singular Value Decomposition (SVD).
+- **Senses:** The Tokenizer Trinity (MathTokenizer + ByteTokenizer + BPE32k).
+- **Logic:** Integrated Sla² (Scaling) and PUP (Position Update) mechanisms.
+
+## 🚀 Zero-Train Path
+Unlike traditional models, Raven reached intelligibility without a standard training loop. By projecting the "Reasoning Essence" of a larger donor model into a lean, specialized shell, Raven achieves high-fidelity blockchain reasoning with minimal latency.
 
 ## 🛠️ Quick Start
-To run a test inference:
 ```bash
-export PYTHONPATH=$PYTHONPATH:/home/adam/worxpace/gladius/raven
-/home/adam/worxpace/gladius/raven/venv/bin/python3 /home/adam/worxpace/gladius/raven/src/engine/inference_test.py
+# Activate environment
+source venv/bin/activate
+
+# Run inference test
+python3 src/engine/inference_test.py
 ```
 
-## 📜 Lineage
-- **SVD Devour:** Weight projection via singular value decomposition.
-- **SVD-Squeeze:** Dimensional reduction for lean deployment.
-- **Net2Net:** Architectural mapping for biological native entities.
+## 🌌 Vision
+Raven serves as the precursor to the 13-model WASM consensus engine, providing the reasoning backbone for No-Human-In-The-Loop (NHITL) protocol growth.
