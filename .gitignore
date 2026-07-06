@@ -7,3 +7,4 @@ __pycache__/
 venv/
 .DS_Store
 weights/memory_map.json
+src/engine/export_wasm_weights.py
