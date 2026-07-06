@@ -1,0 +1,7 @@
+remote: error: Trace: c4f172dce23bd1234ae7f1f8adf7ea2ba0955a13e9d0fe0d55b44d4e4c256eac        
+remote: error: See https://gh.io/lfs for more information.        
+remote: error: File weights/raven-v1-q8_0.gguf is 1306.10 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/artifact-opensource/raven.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/artifact-opensource/raven.git'

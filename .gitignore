@@ -11,3 +11,4 @@ venv/
 *.bin
 venv/
 __pycache__/
+keys/
