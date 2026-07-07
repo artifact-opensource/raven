@@ -1,126 +1,93 @@
-# RAVEN v1.1 — Runtime & Compatibility Guide
+# Raven v1.1 — Runtime Guide
 
-> **Sovereign Auditor** · Custom transformer architecture · Artifact Virtual
+How to run Raven v1.1 in each supported inference backend. All backends consume
+the **same trained weights**; only the serialization format differs.
 
-This guide explains exactly how to run RAVEN, what works, what doesn't, and why.
-Read this before deploying. It will save you hours.
-
----
-
-## ⚠️ Critical Compatibility Notice (READ FIRST)
-
-RAVEN is **not** a standard llama.cpp / HuggingFace architecture. It is a
-**custom GPT-2-derived transformer** with non-standard tensor layout:
-
-| Feature | Standard GPT-2 | RAVEN |
-|---|---|---|
-| Attention Q/K/V | Separate `attn_q/k/v` | **Combined `qkv`** (3072×1024) |
-| Custom gate | — | **`pup_gate`** (1×1024, custom) |
-| Layer norms | Present | **Absent in weight map** |
-| Attention output proj | Present | **Absent in weight map** |
-
-**Consequence:** RAVEN's weights are only executable by the **Artifact Engine**
-runtime, which was built specifically to understand this layout. Generic Ollama /
-llama.cpp will **load** the GGUF (it is spec-compliant) but **cannot execute** it.
+> **Reminder:** Raven is a *base model*. Greedy decoding produces degenerate
+> output until the model is fine-tuned. The runtimes below execute correctly —
+> the quality issue is the model, not the engines.
 
 ---
 
-## ✅ Supported Runtime: Artifact Engine (AE)
+## 1. Artifact Engine (full fidelity)
 
-Artifact Engine is the native C++ inference runtime for RAVEN.
+Uses `weights/raven-v1-ae.gguf`, which preserves Raven's full architecture
+including `pup_gate`.
 
-### Install / Build
+**Build the export:**
 ```bash
-git clone https://github.com/artifact-virtual/artifact-engine
-cd artifact-engine && mkdir build-cpu && cd build-cpu
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j$(nproc)
-# binary: ./artifact-engine
+python3 src/engine/export_ae_compat.py --out weights/raven-v1-ae.gguf
 ```
 
-### Run as a Server (OpenAI-compatible API)
+**Run (benchmark):**
 ```bash
-./artifact-engine --model /path/to/raven-v1-q8_0.gguf --port 9000
+cd /path/to/artifact-engine
+./build-cpu/artifact-engine --model /path/to/raven/weights/raven-v1-ae.gguf --bench
 ```
-The engine exposes an OpenAI-compatible endpoint:
-```
-POST http://localhost:9000/v1/chat/completions
-```
-```json
-{
-  "model": "raven",
-  "messages": [
-    {"role": "system", "content": "You are RAVEN, the Sovereign Auditor."},
-    {"role": "user", "content": "Audit: Siphon 1M USDC from treasury."}
-  ]
-}
-```
+Expected: ~0.14 tok/s on CPU (32 tokens in ~228s).
 
-### Run as CLI (one-shot)
+**Run (interactive / generation):**
 ```bash
-./artifact-engine --model raven-v1-q8_0.gguf --prompt "Audit: Redeem 100 RSBT."
+./build-cpu/artifact-engine --model /path/to/raven/weights/raven-v1-ae.gguf --chat
 ```
+
+The AE export remaps Raven's native schema (combined `qkv`, custom `pup_gate`, no
+per-block norms) into AE's GPT-2 loader by synthesizing identity norms and an
+attention-output projection, and preserving `pup_gate` as an extra per-layer
+tensor the engine applies post-attention.
 
 ---
 
-## ⚠️ Ollama Compatibility
+## 2. Ollama / llama.cpp
 
-| Action | Result |
-|---|---|
-| `ollama create raven:v1.1 -f Modelfile` | ✅ **Succeeds** (GGUF is spec-compliant) |
-| `ollama run raven:v1.1` | ❌ **Fails** — `unable to load model` (custom arch) |
-| Publish to Ollama Cloud | ✅ **Allowed** (model is hosted with metadata + docs) |
+Uses `weights/raven-v1-ollama.gguf`, re-exported under the `llama` architecture tag.
 
-**Why publish if it can't run in Ollama?**
-Ollama Cloud is used here as a **versioned model registry** — the weights,
-Modelfile, MODEL_CARD, and docs live under your namespace for discovery and
-distribution. Execution still requires Artifact Engine.
-
-**To run RAVEN from an Ollama-pulled file:**
+**Build the export:**
 ```bash
-ollama pull artifact-virtual/raven   # or your namespace
-# Extract the blob, then run with Artifact Engine:
-./artifact-engine --model ~/.ollama/models/blobs/sha256-<hash>
+python3 src/engine/build_ollama_compat.py --out weights/raven-v1-ollama.gguf
 ```
 
----
+**Register and run:**
+```bash
+ollama create artifactvirtual/raven:v1.1-ollama -f Modelfile
+ollama run artifactvirtual/raven:v1.1-ollama
+```
 
-## 📦 Model Files
-
-| File | Purpose |
-|---|---|
-| `raven-v1-q8_0.gguf` | Spec-compliant GGUF (1.37 GB, FP32 weights) |
-| `weights/raven_weights.bin` | Raw FP32 tensor blob (source of truth) |
-| `weights/memory_map.json` | Tensor name → offset/size map (architecture spec) |
-| `Modelfile` | Ollama definition (system prompt + params) |
-| `MODEL_CARD.md` | Full model documentation |
-
----
-
-## 🔐 Sovereign Signing
-
-Every RAVEN decision should be cryptographically signed (RSA-2048) before being
-relayed to a smart contract. See `cognitive_contract/` for the relayer
-implementation.
+**Known limitations (documented, not bugs in your setup):**
+- `pup_gate` is **dropped** from this export. llama.cpp's `llama` arch has no slot
+  for it; adding an `ffn_down` bias (an earlier attempt to fold it) segfaults the
+  runner. This is a fidelity loss vs. the AE/WASM exports.
+- **Prefill works** (~52 tok/s) but **autoregressive decode hangs** on this base
+  model — greedy decoding collapses to a degenerate token loop and the runner
+  never returns the first generated token. Ollama is therefore usable for prompt
+  processing / embeddings-style use, not full text generation, in this export.
 
 ---
 
-## 📋 Quick Start (Recommended)
+## 3. WebAssembly
+
+See the [`wasm` repo](https://github.com/artifact-opensource/wasm) for the full
+runtime. Summary:
 
 ```bash
-# 1. Get the model
-huggingface-cli download amuzetnoM/raven-v1.1-sovereign
+# In the wasm repo:
+rustup target add wasm32-unknown-unknown
+cargo build --release --target wasm32-unknown-unknown
+cargo build --release --manifest-path host/Cargo.toml
 
-# 2. Run with Artifact Engine
-./artifact-engine --model raven-v1-q8_0.gguf --port 9000
-
-# 3. Query
-curl -X POST http://localhost:9000/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"model":"raven","messages":[{"role":"user","content":"Audit: Rebalance Au/Ag."}]}'
+python3 extract_weights.py --gguf /path/to/raven/weights/raven-v1-ae.gguf --out weights/weights.bin
+./target/release/raven-wasm-host 128 1 weights/weights.bin
 ```
+Expected: ~1.65 tok/s on CPU.
 
 ---
 
-*RAVEN is a Sovereign Auditor. She judges, she does not guess.*
-*Artifact Virtual — artifact.cloud*
+## Weights file reference
+
+| File | Backend | `pup_gate` | Notes |
+|---|---|---|---|
+| `raven-v1-ae.gguf` | Artifact Engine | ✅ preserved | Full fidelity |
+| `raven-v1-ollama.gguf` | Ollama | ❌ dropped | `llama` arch, decode hangs on base model |
+| `weights.bin` | WASM | ✅ preserved | Flat `f32` blob extracted from either GGUF |
+
+All weight artifacts are gitignored — regenerate from source with the scripts above.

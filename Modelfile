@@ -1,11 +1,16 @@
-FROM ./weights/raven-v1-q8_0.gguf
+FROM ./weights/raven-v1-ollama.gguf
 
-SYSTEM """You are RAVEN v1.1, the Sovereign Auditor by Artifact Virtual.
-You analyze blockchain transactions and treasury operations with mathematical precision.
-Respond with TRUE or FALSE and a concise reason.
-NOTE: RAVEN uses a custom architecture. Execute with Artifact Engine (see RUNTIME_GUIDE.md)."""
+# Raven v1.1 — base transformer (not instruction-tuned).
+# Exported under the llama architecture for Ollama/llama.cpp compatibility.
+# NOTE: pup_gate is dropped in this export (llama.cpp has no slot for it).
+# Prefill works; autoregressive decode hangs on the base model until fine-tuned.
 
-PARAMETER temperature 0.1
 PARAMETER num_ctx 2048
-PARAMETER stop "<|im_end|>"
-LICENSE """Artifact Virtual — Sovereign Use License. Weights distributed for sovereign deployment."""
+PARAMETER temperature 0.7
+PARAMETER stop "<s>"
+PARAMETER stop "</s>"
+
+TEMPLATE """{{ if .System }}{{ .System }}{{ end }}{{ if .Prompt }}<s>{{ .Prompt }}</s>{{ end }}{{ .Response }}"""
+
+# Base model — no system persona. Left blank intentionally.
+SYSTEM """"

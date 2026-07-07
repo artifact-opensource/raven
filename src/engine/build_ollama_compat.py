@@ -5,7 +5,7 @@ build_ollama_compat.py — Build an Ollama-compatible (llama-arch) GGUF from Rav
 Uses the official `gguf` library so the output is always spec-valid.
 
 Raven true architecture (memory_map.json):
-  - 24 layers, 1024 embed, 16 heads, 2048 ctx, 32K vocab
+  - 24 layers, 1024 embed, 16 heads, 2048 ctx, 259 vocab (byte-level)
   - qkv [3072,1024] combined QKV  -> split into attn_q/k/v [1024,1024]
   - mlp_up [4096,1024] + mlp_down [1024,4096]  (GELU MLP, 4x)
   - pup_gate [1,1024]  custom per-layer gating vector -> absorbed into ffn_down.bias

@@ -18,6 +18,7 @@ structure but has not yet been taught to follow commands.
 | Embedding dim | 1024 |
 | Attention heads | 16 (64-dim each) |
 | Context length | 2048 tokens |
+| Vocabulary | 259 (256 bytes + 3 specials) |
 | Vocab | 259 (256 byte tokens + PAD/BOS/EOS) |
 | Feed-forward | 4096 (4× expansion, GELU) |
 | Parameters | ~1.6B |
@@ -98,9 +99,10 @@ quality comes from training.
 
 | Loader | Works? | Notes |
 |---|---|---|
-| Ollama (`llama` arch) | ✅ Yes | This registry build |
-| llama.cpp | ✅ Yes | Same GGUF, any GGUF-compatible frontend |
-| Artifact Engine | ✅ Yes | Native `raven` arch (HF version) |
+| Ollama (`llama` arch) | ⚠️ Partial | Loads + prefill fast (~52 tok/s); **decode hangs** on base model. `pup_gate` dropped. |
+| llama.cpp | ⚠️ Partial | Same GGUF; same decode limitation as Ollama. |
+| Artifact Engine | ✅ Yes | `raven-v1-ae.gguf` — full fidelity, retains `pup_gate`. 0.14 tok/s CPU. |
+| Raven WASM | ✅ Yes | Dependency-free WASM runtime. 1.65 tok/s CPU. See `wasm` repo. |
 | transformers (AutoModel) | ❌ No | Not a HF-standard arch |
 | vLLM / TextGen | ⚠️ Partial | GGUF import only, treat as `llama` |
 
