@@ -1,0 +1,5 @@
+FROM ./weights/raven-v1-ollama.gguf
+TEMPLATE """{{ .Prompt }}"""
+SYSTEM """You are Raven, a sovereign AI model by Artifact Virtual."""
+PARAMETER num_ctx 2048
+PARAMETER temperature 0.7
