@@ -59,7 +59,7 @@ def main():
     writer.add_description(
         "Raven v1.1 (Artifact Virtual) — a 1.6B base transformer, re-exported as "
         "llama-arch for Ollama compatibility. Byte-level vocab (259 tokens). "
-        "Custom pup_gate folded into ffn_down bias. BASE MODEL: not instruction-tuned. "
+        "Custom pup_gate dropped (llama.cpp has no slot; native version retains it). "
         "Native version: amuzetnoM/raven-v1.1-sovereign (Artifact Engine loader)."
     )
     writer.add_tags(["base-model", "transformer", "artifact-virtual", "raven", "llama-compatible"])
@@ -83,10 +83,13 @@ def main():
         writer.add_tensor(f"blk.{L}.ffn_norm.weight", np.ones(1024, dtype=np.float32))
         up = read(t["mlp_up"]["offset"], t["mlp_up"]["shape"])
         down = read(t["mlp_down"]["offset"], t["mlp_down"]["shape"])
-        gate = read(t["pup_gate"]["offset"], t["pup_gate"]["shape"]).reshape(1024)
+        # Raven FFN: h = up * GELU(down @ x); pup_gate is a per-hidden-unit scaling
+        # tensor. llama.cpp's llama arch has NO ffn_down.bias (adding one segfaults
+        # the runner) and no pup_gate slot, so pup_gate is DROPPED from the Ollama
+        # export. This is a documented fidelity loss — the native Raven version
+        # (raven-v1.1-sovereign) retains pup_gate. See MODEL_CARD.md.
         writer.add_tensor(f"blk.{L}.ffn_up.weight", up)
         writer.add_tensor(f"blk.{L}.ffn_down.weight", down)
-        writer.add_tensor(f"blk.{L}.ffn_down.bias", gate.astype(np.float32))
         # Ollama's llama loader expects SwiGLU (ffn_gate). Raven has GELU MLP;
         # provide ffn_gate as a copy of ffn_up so the loader is satisfied.
         # (Inference uses ffn_up*GELU(ffn_down) path; gate is unused by Raven's math
@@ -116,47 +119,15 @@ def main():
     # no merges needed for pure byte-level; provide empty merge list
     writer.add_token_merges([])
 
+    # ---- Model Card / README metadata (add_string works correctly in this gguf) ----
+    writer.add_string("general.readme", readme_text)
+
     writer.write_header_to_file()
     writer.write_kv_data_to_file()
     writer.write_tensors_to_file()
     writer.close()
 
-    # --- Manually inject general.readme KV (gguf 0.19.0 add_string is broken) ---
-    _inject_readme(OUT, readme_text)
-
     print(f"Wrote {OUT} ({os.path.getsize(OUT)/1e6:.1f} MB)")
-
-
-def _inject_readme(path: str, text: str) -> None:
-    """Insert a general.readme string KV pair into an existing GGUF file.
-
-    GGUF KV entry layout:
-      [key_len:uint64][key_bytes][value_type:uint32][val_len:uint64][val_bytes]
-    We bump the header's kv_count by 1 and insert the entry at the start of the
-    KV data section (right after the 20-byte GGUF header + tensor/data counts).
-    """
-    import struct
-    with open(path, "rb") as f:
-        data = bytearray(f.read())
-    # parse header
-    assert data[:4] == b"GGUF"
-    ver = struct.unpack("<I", data[4:8])[0]
-    n_tensors = struct.unpack("<Q", data[8:16])[0]
-    n_kv = struct.unpack("<Q", data[16:24])[0]
-    # KV data starts at offset 24
-    kv_start = 24
-    # build new KV entry bytes
-    key = b"general.readme"
-    val = text.encode("utf-8")
-    entry = struct.pack("<Q", len(key)) + key
-    entry += struct.pack("<I", 8)  # STRING type
-    entry += struct.pack("<Q", len(val)) + val
-    # insert at kv_start
-    data[kv_start:kv_start] = entry
-    # bump kv_count
-    struct.pack_into("<Q", data, 16, n_kv + 1)
-    with open(path, "wb") as f:
-        f.write(data)
 
 if __name__ == "__main__":
     main()
