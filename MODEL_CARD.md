@@ -34,8 +34,15 @@ Raven exists in **two forms** with different loaders:
 - **Loader:** Stock **Ollama** / `llama.cpp` — no custom code needed
 - **Tokenizer:** Byte-level (256 bytes + specials), registered as `llama` BPE type
 - **Custom ops absorbed:** Raven's `pup_gate` (per-layer gating vector) is
-  folded into the `ffn_down` bias; `ffn_gate` is added for SwiGLU schema
-  compliance (copied from `ffn_up`, unused by Raven's GELU path)
+  **dropped** from this export — llama.cpp's `llama` arch has no slot for it and
+  adding an `ffn_down` bias segfaults the runner (verified). `ffn_gate` is added
+  for SwiGLU schema compliance (copied from `ffn_up`, unused by Raven's GELU
+  path). **This is a documented fidelity loss** — the native version retains
+  `pup_gate`.
+- **Known limitation:** Ollama's prefill is fast (~52 tok/s) but **autoregressive
+  decode stalls** on this base model (greedy decoding collapses to a degenerate
+  loop; the runner hangs on the first decode step). Usable for prompt processing,
+  not for full generation in its current export. See `BENCHMARK.md`.
 - **Use it:** `ollama run artifactvirtual/raven:v1.1-ollama`
 
 ### 2. Native version (`amuzetnoM/raven-v1.1-sovereign` on HuggingFace)
