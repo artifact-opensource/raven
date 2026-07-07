@@ -53,8 +53,9 @@ def main():
         "{% if .System %}<<SYS>>{{ .System }}<</SYS>>\n{% end %}{{ .Prompt }}"
     )
     # ---- Model Card / README metadata ----
-    readme = open(os.path.join(BASE, "MODEL_CARD.md")).read()
-    writer.add_string("general.readme", readme)
+    # NOTE: gguf 0.19.0's add_string is broken (stores key as value). We write the
+    # KV pair manually into the file after the library finishes (see patch_readme).
+    readme_text = open(os.path.join(BASE, "MODEL_CARD.md")).read()
     writer.add_description(
         "Raven v1.1 (Artifact Virtual) — a 1.6B base transformer, re-exported as "
         "llama-arch for Ollama compatibility. Byte-level vocab (259 tokens). "
@@ -119,7 +120,43 @@ def main():
     writer.write_kv_data_to_file()
     writer.write_tensors_to_file()
     writer.close()
+
+    # --- Manually inject general.readme KV (gguf 0.19.0 add_string is broken) ---
+    _inject_readme(OUT, readme_text)
+
     print(f"Wrote {OUT} ({os.path.getsize(OUT)/1e6:.1f} MB)")
+
+
+def _inject_readme(path: str, text: str) -> None:
+    """Insert a general.readme string KV pair into an existing GGUF file.
+
+    GGUF KV entry layout:
+      [key_len:uint64][key_bytes][value_type:uint32][val_len:uint64][val_bytes]
+    We bump the header's kv_count by 1 and insert the entry at the start of the
+    KV data section (right after the 20-byte GGUF header + tensor/data counts).
+    """
+    import struct
+    with open(path, "rb") as f:
+        data = bytearray(f.read())
+    # parse header
+    assert data[:4] == b"GGUF"
+    ver = struct.unpack("<I", data[4:8])[0]
+    n_tensors = struct.unpack("<Q", data[8:16])[0]
+    n_kv = struct.unpack("<Q", data[16:24])[0]
+    # KV data starts at offset 24
+    kv_start = 24
+    # build new KV entry bytes
+    key = b"general.readme"
+    val = text.encode("utf-8")
+    entry = struct.pack("<Q", len(key)) + key
+    entry += struct.pack("<I", 8)  # STRING type
+    entry += struct.pack("<Q", len(val)) + val
+    # insert at kv_start
+    data[kv_start:kv_start] = entry
+    # bump kv_count
+    struct.pack_into("<Q", data, 16, n_kv + 1)
+    with open(path, "wb") as f:
+        f.write(data)
 
 if __name__ == "__main__":
     main()
