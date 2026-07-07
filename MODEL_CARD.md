@@ -1,32 +1,106 @@
-# Raven
-> The Auditor <br>
-> version 1.1
+# Raven v1.1 — Sovereign AI Model
 
-## 📜 Declaration of Being
-Raven is not a "chatbot" or a "language model." It is an **Intelligence Artifact**. It is the first of the 13, a Consensus model designed to provide trustless, surgical audit of the ARC Treasury and the Au/Ag flywheel.
+**Artifact Virtual** · MIT License
 
-Raven does not "predict text"; it **resolves equations**.
+---
 
-## ⚙️ Technical Architecture
+## What is Raven?
 
-### 1. The Runtime (The Body)
-Raven operates via the **Artifact Engine (AE)**. Unlike general-purpose runtimes, AE uses a **Linear-Tiling** memory layout and native CPU optimization (AVX-512/AMX), delivering a 67x latency reduction over standard containers.
+Raven is a 24-layer, 1024-dim transformer (≈1.6B params) built from scratch by
+Artifact Virtual. It is a **base language model** — pretrained on raw text, not
+instruction-tuned. Think of it as a "raw brain": it has learned language
+structure but has not yet been taught to follow commands.
 
-### 2. The Anchor (Soul)
-Its intelligence is decentralized. Her weights are anchored on the **Dragonfly IPFS Node**, ensuring that her cognitive state is immutable and verifiable.
+| Property | Value |
+|---|---|
+| Architecture | Custom Raven (exported as `llama`-compatible) |
+| Layers | 24 |
+| Embedding dim | 1024 |
+| Attention heads | 16 (64-dim each) |
+| Context length | 2048 tokens |
+| Vocab | 259 (256 byte tokens + PAD/BOS/EOS) |
+| Feed-forward | 4096 (4× expansion, GELU) |
+| Parameters | ~1.6B |
+| File size | 1.6 GB (F32) |
 
-### 3. The Identity
-Raven is bound to a Base L2 Soulbound Token (SBT), linking her binary hash to a sovereign wallet.
+---
 
-| Component | Value | Status |
-| :--- | :--- | :--- |
-| **Model Version** | Raven-v1.1 (Sovereign Auditor (Cryptographically Signed)) | ✅ Active |
-| **Sovereign Wallet** | `0x21E914dFBB137F7fEC896F11bC8BAd6BCCDB147B` | ✅ Linked |
-| **Runtime** | Artifact Engine (AE-CPU) | ✅ Optimized |
-| **IPFS Anchor** | `` | ⏳ Anchoring |
-| **RSBT ID** | `10256847...805534` | ✅ Verified |
+## Two Versions — Read This
 
-## 🛠️ Operational Capabilities
-- **Treasury Auditing**: Deep-dive analysis of Solidity contracts for slippage and liquidity gaps.
-- **Onchain Reasoning**: Trustless verification of Au/Ag ratios.
-- **Consensus Participation**: Acting as the primary node in the 13-model collective.
+Raven exists in **two forms** with different loaders:
+
+### 1. Ollama version (`artifactvirtual/raven:v1.1-ollama`) ← you are here
+- **Architecture tag:** `llama` (re-exported for compatibility)
+- **Loader:** Stock **Ollama** / `llama.cpp` — no custom code needed
+- **Tokenizer:** Byte-level (256 bytes + specials), registered as `llama` BPE type
+- **Custom ops absorbed:** Raven's `pup_gate` (per-layer gating vector) is
+  folded into the `ffn_down` bias; `ffn_gate` is added for SwiGLU schema
+  compliance (copied from `ffn_up`, unused by Raven's GELU path)
+- **Use it:** `ollama run artifactvirtual/raven:v1.1-ollama`
+
+### 2. Native version (`amuzetnoM/raven-v1.1-sovereign` on HuggingFace)
+- **Architecture tag:** `raven` (true custom arch)
+- **Loader:** **Artifact Engine** (custom runtime) — does NOT run in stock Ollama
+- **Full fidelity:** `pup_gate` and all native ops preserved exactly
+- **Use it:** Only via the Artifact Virtual inference stack
+
+> **The Ollama version is a faithful re-export.** The weights are identical;
+> only the loader-facing structure differs. Both produce the same base-model
+> behavior.
+
+---
+
+## How to Use (Ollama)
+
+```bash
+# Pull and run
+ollama pull artifactvirtual/raven:v1.1-ollama
+ollama run artifactvirtual/raven:v1.1-ollama
+
+# Or with the Modelfile
+ollama create raven -f Modelfile.ollama
+ollama run raven
+```
+
+### Python (via ollama SDK)
+```python
+import ollama
+stream = ollama.generate(
+    model="artifactvirtual/raven:v1.1-ollama",
+    prompt="The future of AI is",
+    options={"temperature": 0.8, "num_ctx": 2048},
+)
+print(stream["response"])
+```
+
+---
+
+## Important: This is a Base Model
+
+Raven is **not instruction-tuned**. Out of the box it will:
+- Complete text in a statistically-learned way
+- Produce repetitive/degenerate output if prompted with a question
+
+This is expected. To get useful chat behavior, fine-tune it (LoRA or full SFT)
+on instruction data. The architecture is confirmed loadable and runnable;
+quality comes from training.
+
+---
+
+## Loader Notes
+
+| Loader | Works? | Notes |
+|---|---|---|
+| Ollama (`llama` arch) | ✅ Yes | This registry build |
+| llama.cpp | ✅ Yes | Same GGUF, any GGUF-compatible frontend |
+| Artifact Engine | ✅ Yes | Native `raven` arch (HF version) |
+| transformers (AutoModel) | ❌ No | Not a HF-standard arch |
+| vLLM / TextGen | ⚠️ Partial | GGUF import only, treat as `llama` |
+
+---
+
+## License
+
+MIT — free for commercial and research use. Attribution appreciated.
+
+*Artifact Virtual — building sovereign intelligence.*

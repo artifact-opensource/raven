@@ -52,6 +52,16 @@ def main():
     writer.add_chat_template(
         "{% if .System %}<<SYS>>{{ .System }}<</SYS>>\n{% end %}{{ .Prompt }}"
     )
+    # ---- Model Card / README metadata ----
+    readme = open(os.path.join(BASE, "MODEL_CARD.md")).read()
+    writer.add_string("general.readme", readme)
+    writer.add_description(
+        "Raven v1.1 (Artifact Virtual) — a 1.6B base transformer, re-exported as "
+        "llama-arch for Ollama compatibility. Byte-level vocab (259 tokens). "
+        "Custom pup_gate folded into ffn_down bias. BASE MODEL: not instruction-tuned. "
+        "Native version: amuzetnoM/raven-v1.1-sovereign (Artifact Engine loader)."
+    )
+    writer.add_tags(["base-model", "transformer", "artifact-virtual", "raven", "llama-compatible"])
 
     # embedding (tied with output) — slice to real vocab (259): 256 bytes + PAD/BOS/EOS
     full_emb = read(gp["token_emb"]["offset"], gp["token_emb"]["shape"])  # [32000,1024]
